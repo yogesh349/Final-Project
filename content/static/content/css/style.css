@@ -1,0 +1,68 @@
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+   
+}
+.header{
+    background-color: #F5F5F5;
+}
+.header_sec{
+    position: sticky;
+    padding: 17px 0px;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+.m{
+    padding:0px  20px;
+}
+.header_1{
+    display: flex;
+}
+.header_2{
+    display: flex;
+    margin-right: 12px;
+}
+.search{
+    width: 36vw;
+    height: 36px;
+    padding: 0px 40px;
+    border-radius: 30px;
+}
+.trend{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.text_trend{
+    font-family: 'League Spartan', sans-serif;
+    margin-left: 20px;
+
+}
+.songs_title{
+    font-family: 'Fredoka', sans-serif;
+}
+.all{
+    float: right;
+    display: block;
+    text-decoration: none;
+    margin-right: 26px;
+    color: #ff0000;
+}
+
+
+/* Form Css */
+
+.f-flex{
+    display: flex;
+    justify-content: center;
+}
+
+.form_error{
+    color: red;
+    float: right;
+    clear: both;
+}
