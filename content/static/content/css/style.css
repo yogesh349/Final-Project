@@ -59,6 +59,7 @@
 .f-flex{
     display: flex;
     justify-content: center;
+    margin-top: 100px;
 }
 
 .form_error{

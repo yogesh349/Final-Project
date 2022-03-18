@@ -1,12 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'content/layout.html' %}
+{% block form %}
+<div class="f-flex">
+    <div class="game-outer  row align-items-center">
+      <h2 class="text-center">Login</h2>
     
-</body>
-</html>
+          <form method="POST" action=" {% url 'login' %}" novalidate>
+              {% csrf_token %}
+              
+              
+              
+              {% for fm in form %}
+              <div class="form-group mt-4">
+                {{fm.label_tag}}
+                {{fm}}
+                <span class="form_error">{{fm.errors|striptags}}
+             </span>
+              </div>
+              {% endfor %}
+
+             {% if form.non_field_errors %}
+              {% for error in form.non_field_errors %}
+              <span class="form_error">{{error}}</span>
+              {% endfor %}
+              {% endif %}
+                <button type="submit" class="btn btn-primary mt-3">Login</button>
+          </form>
+  </div>
+  </div>
+{% endblock form %}

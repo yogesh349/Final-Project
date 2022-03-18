@@ -4,10 +4,8 @@
   <div class="f-flex">
     <div class="game-outer row align-items-center">
         <h1 class="text-center">Register</h1>
-                <form action="" method="post" novalidate>
+                <form action="{% url 'signup' %}" method="post" novalidate>
                     {% csrf_token %}
-
-
                 {% for fm in form %}
                 <div class="form-group">
                     {{fm.label_tag}}
@@ -17,7 +15,7 @@
                 {% endfor %}
             
         
-                <div style="clear: both ;"><a href="{% url '' %}">Already Registered</a></div>
+                <div style="clear: both ;"><a href="{% url 'login' %}">Already Registered</a></div>
               <button type="submit" class="btn btn-primary mt-4">Register</button>
             </form>
             </div>
