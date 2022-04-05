@@ -1,0 +1,30 @@
+{% load static %}
+<script>
+
+
+
+$(".song_img").mouseenter(function(){
+  // let newDiv =$('<div id="play_ib" style="z-index:1;" ><a href=""><i class="fa fa-solid fa-play fa-2x greycolor"></i></a> </div>');
+  // $("#target_btn_play").prepend(newDiv);
+
+  $(".play_ib").css('display','block');
+  $(".song_img").addClass("songLook");
+  
+});
+
+
+ $(".trend_songs").mouseleave(function(e){
+    $(".play_ib").hide();
+    $(".song_img").removeClass("songLook");
+   console.log("i am mouse leave");
+ });
+
+ $("#ham_logo").click(function(e){
+    e.preventDefault();
+  $(".hamburger_ele").toggle(10,function(){
+    $(".hamburger_ele").css("display","block");
+  });
+  
+});
+
+</script>

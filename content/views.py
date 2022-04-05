@@ -6,22 +6,29 @@ from .forms import SignUpForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from .models import Song
 
 # Create your views here.
 
 def index(request):
-    return render(request,'content/index.html')
+    song=Song.objects.all()[:5]
+
+    return render(request,'content/index.html',{'songs':song})
 
 def sign_up(request):
-    if request.method=='POST':
-        fm=SignUpForm(request.POST)
-        if fm.is_valid():
-            fm.save()
-            messages.success(request,'You Have Successfully Logged')
-            return HttpResponseRedirect('/')
+
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
     else:
-        fm=SignUpForm()
-    
+        if request.method=='POST':
+            fm=SignUpForm(request.POST)
+            if fm.is_valid():
+                fm.save()
+                messages.success(request,'You Have Successfully Logged')
+                return HttpResponseRedirect('/')
+        else:
+            fm=SignUpForm()
+
     return render(request,'content/signup.html',{'form':fm})
 
 
@@ -45,3 +52,7 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def play_Song(request):
+    return render(request,'content/playsong.html')

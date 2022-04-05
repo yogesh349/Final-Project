@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .play_song {
+            display: flex;
+            justify-content: space-between;
+            height: 100px;
+            background-color: rgb(211, 207, 207);
+            padding: 20px;
+        }
+
+        .im_nm_sec {
+            display: flex;
+            margin: 10px;
+        }
+
+        #ply_img {
+            border-radius: 4px;
+        }
+
+        .div_nm_sng {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="play_song">
+
+        <div class="im_nm_sec">
+            <div class="im">
+                <img src="{% static 'content/images/pushpa.jfif' %}" alt="" height="70px" id="ply_img">
+            </div>
+            <div class="div_nm_sng">
+                Srivalli
+            </div>
+        </div>
+
+        <div class="btn_play_next">
+            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward fa-2x" aria-hidden="true"></i></button>
+            <button onclick="justplay()" id="play"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button>
+            <button onclick="next_song()" id="next"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></button>
+        </div>
+        <div class="audio_control">
+            <i class="fa fa-volume-up fa-2x" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+        </div>
+    </div>
+
+
+    <script src="{% static 'content/js/script.js' %}"></script>
+</body>
+
+</html>
