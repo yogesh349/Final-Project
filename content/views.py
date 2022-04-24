@@ -1,4 +1,5 @@
 
+from pprint import pformat
 from urllib import response
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -54,5 +55,11 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 
-def play_Song(request):
-    return render(request,'content/playsong.html')
+def play_Song(request,id):
+    song=Song.objects.filter(song_id=id).first()
+    return render(request,'content/playsong.html',{'song':song})
+
+
+def playlist(request):
+    playlist=Song.objects.filter(tags="Love Hits")
+    return render(request,'content/song_d.html',{'playlist':playlist})

@@ -1,0 +1,41 @@
+{% extends 'content/layout.html' %}
+
+{% block song_d %}
+<div class="b_song_d ">
+    <div class="song_i">
+     <img  src="/media/images/LH.jpg"  width="200px" height="200px"></a> 
+    </div>
+
+    <div class="song_d_n">
+        <p>Love Hits Songs</p>
+        <h4>Love Hits- Hindi</h4>
+    </div>
+</div>
+
+<div class="table_s container" >
+    <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="padding: 18px;">Track</th>
+            <th style="padding: 18px;" scope="col">Artists</th>
+            <th style="padding: 18px;" scope="col">Genre</th>
+            <th style="padding: 18px;" scope="col">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for song in playlist %}
+               <tr>
+                <td>1</td>
+                 <td style="padding: 18px;"><img style="margin-left: 10px;" src="/media/{{song.image}}" width="60px" alt="">{{song.name}}</td>
+                 <td style="padding: 18px;">Otto</td>
+                 <td style="padding: 18px;">@mdo</td>
+               </tr>
+
+            
+            {% endfor %}
+         
+        </tbody>
+      </table>
+</div>
+{% endblock song_d %}

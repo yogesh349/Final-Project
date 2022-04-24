@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Kanit', sans-serif;
    
 }
 .header{
@@ -90,11 +91,51 @@
 /* Hamburger */
 
 .hamburger_ele{
-     display: none; 
+    display: none; 
     position: fixed;
-    top: 15%;
-    width: 25%;
+    top: 0%;
+    width: 23%;
     background-color: #fdfdfd;
     height: 100%;
     z-index: 1;
+    padding: 1.5rem;
 }
+
+
+.login_signup:hover{
+    color: gainsboro;
+
+}
+
+.ham_link{
+    text-decoration: none;
+    color: black;
+}
+.ham_link:hover{
+    color: #4a3b3b;
+    text-decoration: none;
+}
+.quick_access{
+    margin-top: 2rem;
+}
+
+.a_child{
+    margin: 1.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+/* song_d.html */
+
+.b_song_d{
+    display: flex;
+    margin: 120px 15px;
+
+}
+.song_d_n{
+    margin: 40px;
+}
+
+
+
+

@@ -26,10 +26,11 @@ Home
       {% for song in songs %}
       <div class="trend_songs">
         <div id="target_btn_play" class="card" style="width: 11rem;">
-         <a href=""><img class="card-img-top song_img" src="/media/{{song.image}}" alt="Card image cap" width="190px" height="150px"></a> 
+         <a  href="{% url 'play' song.song_id %}"><img class="card-img-top song_img" src="/media/{{song.image}}" alt="Card image cap" width="190px" height="150px"></a> 
          <div class="play_ib" style="z-index:1;" ><a href=""><i class="fa fa-solid fa-play fa-2x greycolor"></i></a> </div>
           <div class="card-body">
-            <p class="card-text songs_title">{{song.name}} </p>
+            <!-- <input type="hidden" name="song_file" id="file_S" value="{{song.song}}"> -->
+            <p class="card-text songs_title">{{song.name}}</p>
           </div>
         </div>
       </div>
@@ -100,9 +101,9 @@ Home
     <div class="trend">
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/pushpa.jfif' %}" alt="Card image cap" width="200px" height="150px">
+         <a href=" {% url 'playlist' %} "><img class="card-img-top" src="media/images/LH.jpg" alt="Card image cap" width="200px" height="150px"></a> 
           <div class="card-body">
-            <p class="card-text songs_title">Srivalli</p>
+            <p class="card-text songs_title">Love Hits</p>
           </div>
         </div>
       </div>

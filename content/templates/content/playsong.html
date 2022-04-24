@@ -17,9 +17,8 @@
         .play_song {
             display: flex;
             justify-content: space-between;
-            height: 100px;
+            height: 70px;
             background-color: rgb(211, 207, 207);
-            padding: 20px;
         }
 
         .im_nm_sec {
@@ -32,7 +31,20 @@
         }
 
         .div_nm_sng {
-            margin-left: 5px;
+            margin-left: 8px;
+        }
+        .btn_play_next{
+            padding-top: 12px;
+            position: absolute;
+            left: 49%;
+        }
+        .audio_control{
+            padding-top: 12px;
+        }
+        .fav_i{
+            padding-top: 23px;
+            position: absolute;
+            left: 22%;
         }
     </style>
 </head>
@@ -43,25 +55,32 @@
 
         <div class="im_nm_sec">
             <div class="im">
-                <img src="{% static 'content/images/pushpa.jfif' %}" alt="" height="70px" id="ply_img">
+                <img src="/media/{{song.image}}" alt="" height="50px" id="ply_img">
             </div>
             <div class="div_nm_sng">
-                Srivalli
+                {{song.name}}
             </div>
         </div>
 
+        <div class="fav_i">
+            <i class="fa fa-solid fa-heart fa-lg"></i>
+        </div>
+        <input type="hidden" name="song_file" id="file_S" value="{{song.song}}">
         <div class="btn_play_next">
-            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward fa-2x" aria-hidden="true"></i></button>
-            <button onclick="justplay()" id="play"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button>
-            <button onclick="next_song()" id="next"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></button>
+            <button style="margin: 6px;" id="pre"><i class="fa fa-step-backward fa-2x" aria-hidden="true"></i></button>
+            <button style="margin: 6px;" id="play"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button>
+            <button style="margin: 6px;" id="next"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></button>
         </div>
         <div class="audio_control">
+            <p id="volume_show">90</p>
             <i class="fa fa-volume-up fa-2x" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+            <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume"> 
         </div>
     </div>
-
-
-    <script src="{% static 'content/js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    
+    {% include 'content/script.html' %}
 </body>
 
 </html>

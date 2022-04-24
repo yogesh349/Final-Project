@@ -28,6 +28,7 @@ urlpatterns = [
     path('signup/',views.sign_up,name='signup'),
     path('login/',views.user_login,name='login'),
     path('logout/',views.user_logout,name='logout'),
-    path('playsong/',views.play_Song,name='play')
+    path('playsong/<int:id>/',views.play_Song,name='play'),
+    path('playlist/',views.playlist,name='playlist')
 
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
