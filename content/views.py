@@ -1,13 +1,16 @@
 
+import imp
 from pprint import pformat
+from typing import List
 from urllib import response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from .forms import SignUpForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import Song
+import json
 
 # Create your views here.
 
@@ -63,3 +66,16 @@ def play_Song(request,id):
 def playlist(request):
     playlist=Song.objects.filter(tags="Love Hits")
     return render(request,'content/song_d.html',{'playlist':playlist})
+
+# def song_s(request):
+#     if request.method=="GET":
+#         id=request.GET['song_id']
+#         song_c=Song.objects.filter(song_id=id).first()
+#         song_choose=json.dumps(song_c)
+#         return JsonResponse({'status':'save','song_choose': song_choose})
+
+
+def song_c_o(request,id):
+    playlist=Song.objects.filter(tags="Love Hits")
+    song_c=Song.objects.filter(song_id=id).first
+    return render(request,'content/songd_p.html',{'playlist':playlist,'songC':song_c})

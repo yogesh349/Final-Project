@@ -135,7 +135,75 @@
 .song_d_n{
     margin: 40px;
 }
+/* tr:hover{
+    cursor: pointer;
+    background-color: #ccc;
+  } */
 
+/* song play */
+
+.play_song {
+    position: fixed;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    background-color: rgb(211, 207, 207);
+
+}
+.ps{
+
+}
+
+.im_nm_sec {
+    display: flex;
+    margin: 10px;
+}
+
+#ply_img {
+    border-radius: 4px;
+}
+
+.div_nm_sng {
+    margin-left: 8px;
+}
+.btn_play_next{
+    padding-top: 12px;
+    position: absolute;
+    left: 46%;
+}
+/* .audio_control{
+    
+} */
+.fav_i{
+    padding-top: 23px;
+    position: absolute;
+    left: 22%;
+}
+
+#slider{
+    height: 10px;
+    width: 500px;
+    background-color: white;
+    margin:5px 0px 0px 18%;
+    cursor: pointer;
+
+}
+#slidersong{
+    background-color: black;
+    height: 10px;
+    width: 50%;
+    transition: all 7s;
+}
+#song_time{
+    border: 1px solid black;
+    height: 47%;
+    padding: 4px;
+    border-radius: 10px;
+    margin: 13px;
+}
 
 
 

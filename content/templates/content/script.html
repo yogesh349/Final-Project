@@ -7,39 +7,27 @@ let volume_show = document.querySelector('#volume_show');
 let audio =document.createElement("audio");
 let playingSong=false;
 var song="";
+let progressed=document.getElementById("slidersong");
+let progess_bar=document.getElementById("slider");
 
 
 
-
-if (window.location.href.indexOf("playsong") > -1) {
-  var song=document.getElementById("file_S").value;
+if (window.location.href.indexOf("song_c_o") > -1) {
+  var song=document.getElementById("file_S").value; 
   audio.src="/media/"+song;
+  audio.play();
+  $(".play").html("<i class='fa fa fa-pause fa-2x'></i>");
+
 }
 
 
-// audio.src="/media/music/song3.mp3";
-
 
 $(".song_img").mouseenter(function(){
-  // let newDiv =$('<div id="play_ib" style="z-index:1;" ><a href=""><i class="fa fa-solid fa-play fa-2x greycolor"></i></a> </div>');
-  // $("#target_btn_play").prepend(newDiv);
-   
   $(".play_ib").css('display','block');
   $(".song_img").addClass("songLook");
   
 });
 
-// $(".song_img").click(function(){
-
-//   $.ajax()
-
-// });
-
-
-$("tr").click(function(){
-  window.location = "index.html";
-  console.log('yes tr taf');
-});
 
  $(".trend_songs").mouseleave(function(e){
     $(".play_ib").hide();
@@ -81,7 +69,7 @@ function pausesong(){
 }
 
 // playsong.html
-$("#play").click(function(){
+$(".play").click(function(){
   if(playingSong==false){
     playsong();
     $(this).html("<i class='fa fa-solid fa-pause fa-2x'></i>");
@@ -102,5 +90,52 @@ function mute_sound(){
 	volume.value = 0;
 	volume_show.innerHTML = 0;
 }
+
+
+
+// {% comment %} $('.song_d').click(function (e) {
+//   e.preventDefault(); 
+//   id=$(this).attr('data-sid');
+//   mydata={song_id:id};
+//   $.ajax({
+//     url:"{% url 'song_s' %}",
+//     method:"GET",
+//     data:mydata,
+//     success:function(data){
+//       if(data.status=="save"){
+//         console.log("YEP SSS");
+//       }
+//     }
+
+//   });
+//   $(".play_song").addClass("ps");
+
+
+// }); {% endcomment %}
+
+audio.ontimeupdate=function(e){
+  progressed.style.width=Math.floor(audio.currentTime*100/audio.duration )+"%";
+  var duration = audio.duration; //song is object of audio.  song= new Audio();
+
+
+var sec= new Number();
+var min= new Number();
+ sec = Math.floor( duration );    
+ min = Math.floor( sec / 60 );
+min = min >= 10 ? min : '0' + min;    
+sec = Math.floor( sec % 60 );
+sec = sec >= 10 ? sec : '0' + sec;
+document.getElementById("Dtime").innerHTML=min + ":"+ sec;
+
+
+var duration = document.getElementById('Ctime');
+    var s = parseInt(audio.currentTime % 60);
+    var m = parseInt((audio.currentTime / 60) % 60);
+     duration.innerHTML = m + ':' + s ;
+}
+progess_bar.onclick=function(e){
+  audio.currentTime= (e.offsetX/progess_bar.offsetWidth) *audio.duration;
+}
+
 
 </script>
