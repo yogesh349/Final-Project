@@ -32,5 +32,6 @@ urlpatterns = [
     path('playlist/',views.playlist,name='playlist'),
     path('song_c_o/<int:id>',views.song_c_o,name='song_c_o'),
     path('playnext',views.play_next,name='next'),
+     path('previous',views.play_previous,name='previous'),
 
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

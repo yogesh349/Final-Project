@@ -127,13 +127,19 @@ var min= new Number();
 min = min >= 10 ? min : '0' + min;    
 sec = Math.floor( sec % 60 );
 sec = sec >= 10 ? sec : '0' + sec;
-document.getElementById("Dtime").innerHTML=min + ":"+ sec;
+if(sec!==null && min!==null){
+  document.getElementById("Dtime").innerHTML=min + ":"+ sec;
+}
+
 
 
 var duration = document.getElementById('Ctime');
     var s = parseInt(audio.currentTime % 60);
     var m = parseInt((audio.currentTime / 60) % 60);
-     duration.innerHTML = m + ':' + s ;
+    if(s!==null && m!==null){
+      duration.innerHTML = m + ':' + s ;
+    }
+     
 }
 $("#slider").click(function(e){
   audio.currentTime= (e.offsetX/progess_bar.offsetWidth) *audio.duration;
@@ -153,35 +159,67 @@ $(".next").click(function(){
      data:mydata,
      context: this,
      success:function(data){
-      console.log(data.filter_playlist);
       index = data.filter_playlist.findIndex(x => x.song_id ===parseInt(id));
-      console.log(index+ " normal");
       if (index<data.filter_playlist.length-1) {
-        index++;
+      index++;
       let y = data.filter_playlist[index].song_id;
-      console.log('Y: ', y)
-      console.log(this);
-
       $(this).attr("data-sid",y);
       let next_song=data.filter_playlist[index].song;
-      
-      console.log("BTN "+$(this).attr("data-sid"));
       audio.src="/media/"+next_song;
-
       $(".s_name").text(data.filter_playlist[index].name);
-      console.log("Increment index "+index)
       document.getElementById('ply_img').src="/media/"+data.filter_playlist[index].image;
       audio.play();
+      }else{
+        index=0;
+        let next_song=data.filter_playlist[index].song;
+        $(this).attr("data-sid",data.filter_playlist[index].song_id);
+        audio.src="/media/"+next_song;
+        $(".s_name").text(data.filter_playlist[index].name);
+        document.getElementById('ply_img').src="/media/"+data.filter_playlist[index].image;
+        audio.play(); 
       }
-      
-
-      
-
-
-
     }
-  
-
    });
+});
+
+$(".previous").click(function(){
+  let id;
+  let index=0;
+  id=parseInt($(this).attr('data-sid'));
+
+  $.ajax({
+    url:"{% url 'previous'  %}",
+     method:"GET",
+     context: this,
+     success:function(data){
+      index = data.filter_playlist.findIndex(x => x.song_id ===parseInt(id));
+      console.log(index)
+      if(index>0){
+        index--;
+      let y = data.filter_playlist[index].song_id;
+      $(this).attr("data-sid",y);
+      let next_song=data.filter_playlist[index].song;
+      audio.src="/media/"+next_song;
+      $(".s_name").text(data.filter_playlist[index].name);
+      document.getElementById('ply_img').src="/media/"+data.filter_playlist[index].image;
+      audio.play();
+
+      }else{
+        index=0;
+        let next_song=data.filter_playlist[index].song;
+        $(this).attr("data-sid",data.filter_playlist[index].song_id);
+        audio.src="/media/"+next_song;
+        $(".s_name").text(data.filter_playlist[index].name);
+        document.getElementById('ply_img').src="/media/"+data.filter_playlist[index].image;
+        audio.play(); 
+
+
+      }
+     }
+
+  })
+
+ 
+
 });
 </script>

@@ -85,3 +85,9 @@ def play_next(request):
     playlist=Song.objects.filter(tags="Love Hits").values()
     filter_playlist=list(playlist)    
     return JsonResponse({'status':'save','filter_playlist':filter_playlist, 'song_id':id})
+
+
+def play_previous(request):
+    playlist=Song.objects.filter(tags="Love Hits").values()
+    filter_playlist=list(playlist) 
+    return JsonResponse({'status':'previous','filter_playlist':filter_playlist})
