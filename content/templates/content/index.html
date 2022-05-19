@@ -25,8 +25,8 @@ Home
     <div class="trend">
       {% for song in songs %}
       <div class="trend_songs">
-        <div id="target_btn_play" class="card" style="width: 11rem;">
-         <a  href="{% url 'play' song.song_id %}"><img class="card-img-top song_img" src="/media/{{song.image}}" alt="Card image cap" width="190px" height="150px"></a> 
+        <div id="target_btn_play" class="card" style="width: 12rem;">
+         <a  href="{% url 'play' song.song_id %}"><img class="card-img-top song_img" src="/media/{{song.image}}" alt="Card image cap"width="200px" height="150px"></a> 
          <div class="play_ib" style="z-index:1;" ><a href=""><i class="fa fa-solid fa-play fa-2x greycolor"></i></a> </div>
           <div class="card-body">
             <!-- <input type="hidden" name="song_file" id="file_S" value="{{song.song}}"> -->
@@ -110,36 +110,36 @@ Home
 
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/pushpa.jfif' %}" alt="Card image cap" width="200px" height="150px">
+          <img class="card-img-top" src="media/images/hp.webp" alt="Card image cap" width="200px" height="150px">
           <div class="card-body">
-            <p class="card-text songs_title">Srivalli</p>
+            <p class="card-text songs_title">House Party</p>
           </div>
         </div>
       </div>
 
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/pushpa.jfif' %}" alt="Card image cap" width="200px" height="150px">
+          <img class="card-img-top" src="media/images/reel.webp" alt="Card image cap" width="200px" height="150px">
           <div class="card-body">
-            <p class="card-text songs_title">Srivalli</p>
+            <p class="card-text songs_title">Reelin' It In</p>
           </div>
         </div>
       </div>
 
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/pushpa.jfif' %}" alt="Card image cap" width="200px" height="150px">
+          <img class="card-img-top" src="media/images/90s.webp" alt="Card image cap" width="200px" height="150px">
           <div class="card-body">
-            <p class="card-text songs_title">Srivalli</p>
+            <p class="card-text songs_title">90s - Unplugged</p>
           </div>
         </div>
       </div>
 
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/pushpa.jfif' %}" alt="Card image cap" width="200px" height="150px">
+          <img class="card-img-top" src="media/images/hiphop.webp" alt="Card image cap" width="200px" height="150px">
           <div class="card-body">
-            <p class="card-text songs_title">Srivalli</p>
+            <p class="card-text songs_title">Hip Hop - Top 30</p>
           </div>
         </div>
       </div>   
@@ -148,3 +148,59 @@ Home
   </div>
     
 {% endblock toplaylist %}
+
+{% block topcharts %}
+
+<div class="container mt-5">
+  <h3 class="text_trend text-left">Top Charts</h3>
+  <div class="trend">
+    <div class="trend_songs">
+      <div class="card" style="width: 12rem;">
+       <a href=" {% url 'playlist' %} "><img class="card-img-top" src="media/images/international.webp" alt="Card image cap" width="200px" height="150px"></a> 
+        <div class="card-body">
+          <p class="card-text songs_title">Top International</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend_songs">
+      <div class="card" style="width: 12rem;">
+        <img class="card-img-top" src="media/images/hindi.webp" alt="Card image cap" width="200px" height="150px">
+        <div class="card-body">
+          <p class="card-text songs_title">Hindi Top 50</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend_songs">
+      <div class="card" style="width: 12rem;">
+        <img class="card-img-top" src="media/images/hiphop.webp" alt="Card image cap" width="200px" height="150px">
+        <div class="card-body">
+          <p class="card-text songs_title">Hip Hop</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend_songs">
+      <div class="card" style="width: 12rem;">
+        <img class="card-img-top" src="media/images/retro.webp" alt="Card image cap" width="200px" height="150px">
+        <div class="card-body">
+          <p class="card-text songs_title">Retro Top 50</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend_songs">
+      <div class="card" style="width: 12rem;">
+        <img class="card-img-top" src="media/images/pop.webp" alt="Card image cap" width="200px" height="150px">
+        <div class="card-body">
+          <p class="card-text songs_title">Pop- Top 50</p>
+        </div>
+      </div>
+    </div>   
+  </div> 
+  <div><a class="all" href=""> See all</a> </div>     
+</div>
+  
+
+{% endblock topcharts %}

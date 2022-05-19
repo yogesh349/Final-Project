@@ -15,7 +15,9 @@ let progess_bar=document.getElementById("slider");
 if (window.location.href.indexOf("song_c_o") > -1) {
   var song=document.getElementById("file_S").value; 
   audio.src="/media/"+song;
+  console.log(audio.src);
   audio.play();
+  playingSong = true;
   $(".play").html("<i class='fa fa fa-pause fa-2x'></i>");
 
 }
@@ -133,9 +135,53 @@ var duration = document.getElementById('Ctime');
     var m = parseInt((audio.currentTime / 60) % 60);
      duration.innerHTML = m + ':' + s ;
 }
-progess_bar.onclick=function(e){
+$("#slider").click(function(e){
   audio.currentTime= (e.offsetX/progess_bar.offsetWidth) *audio.duration;
-}
+});
 
 
+$(".next").click(function(){
+ let index=0;
+ let id;
+ id=parseInt($(this).attr('data-sid'));
+ console.log("Song Id " +id);
+ mydata={s_id:id};
+ 
+ $.ajax({
+     url:"{% url 'next'  %}",
+     method:"GET",
+     data:mydata,
+     context: this,
+     success:function(data){
+      console.log(data.filter_playlist);
+      index = data.filter_playlist.findIndex(x => x.song_id ===parseInt(id));
+      console.log(index+ " normal");
+      if (index<data.filter_playlist.length-1) {
+        index++;
+      let y = data.filter_playlist[index].song_id;
+      console.log('Y: ', y)
+      console.log(this);
+
+      $(this).attr("data-sid",y);
+      let next_song=data.filter_playlist[index].song;
+      
+      console.log("BTN "+$(this).attr("data-sid"));
+      audio.src="/media/"+next_song;
+
+      $(".s_name").text(data.filter_playlist[index].name);
+      console.log("Increment index "+index)
+      document.getElementById('ply_img').src="/media/"+data.filter_playlist[index].image;
+      audio.play();
+      }
+      
+
+      
+
+
+
+    }
+  
+
+   });
+});
 </script>

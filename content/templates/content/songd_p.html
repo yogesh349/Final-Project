@@ -46,10 +46,10 @@
         
         <div class="im_nm_sec">
             <div class="im">
-                <img src="/media/{{songC.image}}" alt="" height="50px" id="ply_img">
+                <img src="/media/{{songC.image}}" alt="" height="50px" id="ply_img" class="img_s">
             </div>
             <div class="div_nm_sng">
-                {{songC.name}}
+               <span class="s_name">{{songC.name}}</span> 
             </div>
         </div>
     
@@ -70,7 +70,7 @@
         <div class="btn_play_next">
             <button style="margin: 6px;" id="pre"><i class="fa fa-step-backward fa-2x" aria-hidden="true"></i></button>
             <button style="margin: 6px;" class="play"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button>
-            <button style="margin: 6px;" id="next"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></button>
+            <button data-sid="{{songC.song_id}}" style="margin: 6px;" class="next"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></button>
         </div>
         <div class="audio_control">
             <p id="volume_show">90</p>

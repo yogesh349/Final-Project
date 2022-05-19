@@ -79,3 +79,9 @@ def song_c_o(request,id):
     playlist=Song.objects.filter(tags="Love Hits")
     song_c=Song.objects.filter(song_id=id).first
     return render(request,'content/songd_p.html',{'playlist':playlist,'songC':song_c})
+
+def play_next(request):
+    id=request.GET['s_id']
+    playlist=Song.objects.filter(tags="Love Hits").values()
+    filter_playlist=list(playlist)    
+    return JsonResponse({'status':'save','filter_playlist':filter_playlist, 'song_id':id})

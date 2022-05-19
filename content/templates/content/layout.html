@@ -30,7 +30,7 @@
         <div class="m">
           <a href=""><i id="ham_logo" class="fa fa-solid fa-bars" style="font-size: 30px;"></i></a>
         </div>
-        <div class="m"> <img src=" {% static 'content/images/logo.png' %}" width="100px" alt=""></div>
+        <div class="m"> <a href=" {% url 'home' %}"><img src=" {% static 'content/images/logo.png' %}" width="100px" alt=""></a> </div>
         <div class="m">
           <input type="search" name="" id="" class="search">
         </div>
@@ -72,6 +72,7 @@
   {% block newrelease %} {% endblock newrelease %}
   {% block trending %}{% endblock trending %}
   {% block toplaylist %}{% endblock toplaylist %}
+  {% block topcharts %}{% endblock topcharts %}
 
 
   {% block form %}{% endblock form %}
