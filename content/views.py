@@ -5,18 +5,24 @@ from typing import List
 from urllib import response
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
+from numpy import rec
 from .forms import SignUpForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import Song
+from .recommend import recommend_songs
+from .recommend import data
 import json
+from joblib import load
 
 # Create your views here.
 
+model=load('./notebooks/models.joblib')
 def index(request):
     song=Song.objects.all()[:5]
-
+    r =recommend_songs([{'name': 'Come As You Are', 'year':1991}],data)
+    print(r)
     return render(request,'content/index.html',{'songs':song})
 
 def sign_up(request):
