@@ -9,11 +9,13 @@ let playingSong=false;
 var song="";
 let progressed=document.getElementById("slidersong");
 let progess_bar=document.getElementById("slider");
+var three_tar=document.getElementsByClassName('tdS');
 
 
 
-if (window.location.href.indexOf("song_c_o") > -1) {
-  var song=document.getElementById("file_S").value; 
+if (window.location.href.indexOf("song_c_o") > -1 ||window.location.href.indexOf("playsong")>-1) {
+var song=document.getElementById("file_S").value;
+  console.log(song);
   audio.src="/media/"+song;
   console.log(audio.src);
   audio.play();
@@ -24,17 +26,18 @@ if (window.location.href.indexOf("song_c_o") > -1) {
 
 
 
-$(".song_img").mouseenter(function(){
-  $(".play_ib").css('display','block');
-  $(".song_img").addClass("songLook");
+$(".song_img").mouseenter(function(e){
+  
+  e.target.style.opacity='0.7'
   
 });
 
 
  $(".trend_songs").mouseleave(function(e){
-    $(".play_ib").hide();
-    $(".song_img").removeClass("songLook");
-   console.log("i am mouse leave");
+  //   $(".play_ib").hide();
+  //   $(".song_img").removeClass("songLook");
+  //  console.log("i am mouse leave");
+  e.target.style.opacity='1'
  });
 
  $("#ham_logo").click(function(e){
@@ -52,6 +55,9 @@ window.onload = function(){
     if(e.target!== divToHide){
       $(".hamburger_ele").css("display","none");
 
+    }
+    if(e.target!== three_tar[0]){
+      $(".three_list").css("display","none");
     }
   };
 };
@@ -94,26 +100,6 @@ function mute_sound(){
 }
 
 
-
-// {% comment %} $('.song_d').click(function (e) {
-//   e.preventDefault(); 
-//   id=$(this).attr('data-sid');
-//   mydata={song_id:id};
-//   $.ajax({
-//     url:"{% url 'song_s' %}",
-//     method:"GET",
-//     data:mydata,
-//     success:function(data){
-//       if(data.status=="save"){
-//         console.log("YEP SSS");
-//       }
-//     }
-
-//   });
-//   $(".play_song").addClass("ps");
-
-
-// }); {% endcomment %}
 
 audio.ontimeupdate=function(e){
   progressed.style.width=Math.floor(audio.currentTime*100/audio.duration )+"%";
@@ -222,4 +208,10 @@ $(".previous").click(function(){
  
 
 });
+$(".tdS").click(function(e){
+  e.preventDefault();
+  if(e.target==three_tar[0]){
+    $(".three_list").css("display","block");
+  }
+})
 </script>

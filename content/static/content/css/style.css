@@ -204,6 +204,48 @@
     border-radius: 10px;
     margin: 13px;
 }
+.artist_l{
+    display: flex;
+}
+.circle_a{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px; 
+    background-color: black;
+    margin: 14px;
 
+}
+.tdS{
+    width: 37px;
+    height: 20px;
+    color: black;
+}
+
+.three_list{
+    display: none;
+    position: fixed;
+    padding: 15px;
+    bottom: 43px;
+    left: 26%;
+    z-index: 1;
+    /* display: none; */
+    background-color: rgb(211, 207, 207);
+}
+.tdl{
+    margin: 5px;
+}
+.share_t{
+    margin-left: 5px;
+}
+.rm_u{
+    text-decoration: none;
+    color: black;
+}
+.rm_u:hover{
+    text-decoration: none;
+    color: black;
+   
+
+}
 
 

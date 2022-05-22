@@ -21,12 +21,9 @@ from joblib import load
 model=load('./notebooks/models.joblib')
 def index(request):
     song=Song.objects.all()[:5]
-    r =recommend_songs([{'name': 'Come As You Are', 'year':1991}],data)
-    print(r)
     return render(request,'content/index.html',{'songs':song})
 
 def sign_up(request):
-
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
     else:
@@ -66,19 +63,14 @@ def user_logout(request):
 
 def play_Song(request,id):
     song=Song.objects.filter(song_id=id).first()
-    return render(request,'content/playsong.html',{'song':song})
+    recommendSongs =recommend_songs([{'name': 'Come As You Are', 'year':1991}],data)
+    return render(request,'content/playsong.html',{'song':song,'recommend_songs':recommendSongs})
 
 
 def playlist(request):
     playlist=Song.objects.filter(tags="Love Hits")
     return render(request,'content/song_d.html',{'playlist':playlist})
 
-# def song_s(request):
-#     if request.method=="GET":
-#         id=request.GET['song_id']
-#         song_c=Song.objects.filter(song_id=id).first()
-#         song_choose=json.dumps(song_c)
-#         return JsonResponse({'status':'save','song_choose': song_choose})
 
 
 def song_c_o(request,id):

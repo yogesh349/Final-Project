@@ -323,11 +323,11 @@ def recommend_songs( song_list, spotify_data, n_songs=10):
 # In[37]:
 
 
-recommend_songs([{'name': 'Come As You Are', 'year':1991},
-                {'name': 'Smells Like Teen Spirit', 'year': 1991},
-                {'name': 'Lithium', 'year': 1992},
-                {'name': 'All Apologies', 'year': 1993},
-                {'name': 'Stay Away', 'year': 1993}],  data)
+# recommend_songs([{'name': 'Come As You Are', 'year':1991},
+#                 {'name': 'Smells Like Teen Spirit', 'year': 1991},
+#                 {'name': 'Lithium', 'year': 1992},
+#                 {'name': 'All Apologies', 'year': 1993},
+#                 {'name': 'Stay Away', 'year': 1993}],  data)
 
 
 # In[39]:
