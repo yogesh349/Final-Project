@@ -1,7 +1,7 @@
 {% load static %}
 <script>
 
-let recent_volume= document.querySelector('#volume');
+let recent_volume= document.querySelector('.volume');
 let volume_show = document.querySelector('#volume_show');
 
 let audio =document.createElement("audio");
@@ -22,6 +22,16 @@ var song=document.getElementById("file_S").value;
   playingSong = true;
   $(".play").html("<i class='fa fa fa-pause fa-2x'></i>");
 
+}
+
+if(window.location.href.indexOf("playsong") > -1){
+
+  let ar =$(".artist_name").text();
+  let array_artist=ar.split(",");
+  $(".f_ar").html(array_artist[0]);
+  $(".s_ar").html(array_artist[1]);
+  $(".t_ar").html(array_artist[2]);
+ 
 }
 
 
@@ -93,7 +103,8 @@ function volume_change(){
 	audio.volume = recent_volume.value / 100;
 }
 
-function mute_sound(){
+function mute_sound(e){
+  e.preventDefault();
 	audio.volume = 0;
 	volume.value = 0;
 	volume_show.innerHTML = 0;
@@ -214,4 +225,6 @@ $(".tdS").click(function(e){
     $(".three_list").css("display","block");
   }
 })
+
+
 </script>

@@ -53,6 +53,9 @@
     margin-right: 26px;
     color: #ff0000;
 }
+#ham_logo{
+    color: black;
+}
 
 
 /* Form Css */
@@ -209,10 +212,10 @@
 }
 .circle_a{
     border-radius: 50%;
-    width: 200px;
-    height: 200px; 
+    width: 154px;
+    height: 153px; 
     background-color: black;
-    margin: 14px;
+    margin: 26px;
 
 }
 .tdS{
@@ -247,5 +250,12 @@
    
 
 }
+.share_link{
 
+    z-index: 1;
+    display: flex;
+}
+.facebook{
+    margin: 5px;
+}
 

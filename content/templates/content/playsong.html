@@ -10,7 +10,45 @@
         
         <h5>{{song.name}} | {{song.singer}}</h5>
         <h3>{{song.name}}</h3>
-        <p>{{song.singer}}</p>
+        <p class="artist_name">{{song.singer}}</p>
+        <div class="share_link">
+            <div class="facebook">
+                <a href="#" 
+        onclick="
+       window.open(
+        'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+        'facebook-share-dialog', 
+        'width=626,height=436'); 
+         return false;">
+       <img src="/media/images/facebook.png" width="40px" height="40px" alt=""> 
+      </a>
+            </div>
+            <div class="facebook">
+                <a href="#" 
+               onclick="
+               window.open(
+              'https://www.twitter.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+              'facebook-share-dialog', 
+              'width=626,height=436'); 
+               return false;">
+               <img src="/media/images/twitter.png" width="40px" height="40px" alt="">
+      </a>
+
+            
+            </div>
+            <div class="facebook">
+              <a href="#" 
+               onclick="
+               window.open(
+              'https://www.instagram.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+              'facebook-share-dialog', 
+              'width=626,height=436'); 
+               return false;">
+               <img src="/media/images/insta.png" width="40px" height="40px" alt="">
+            </a>
+             
+            </div>
+          </div>
     </div>
 </div>
 {% endblock song_d %}
@@ -57,12 +95,13 @@
 
 {% block artist %}
 <div class="container mt-5">
+  <h3 class="text_trend text-left">Song Artist</h3>
     <div class="artist_l">
         <div class="artist">
             <div class="circle_a">
 
             </div>
-            <p>Arjit</p>
+            <p class="f_ar"></p>
             </div>
             
             
@@ -70,26 +109,15 @@
              <div class="circle_a">
                 
             </div>
-            <p>Arjit</p>
+            <p class="s_ar">Arjit</p>
         </div>
         <div class="artist">
             <div class="circle_a">
                 
             </div>
-            <p>Arjit</p>
+            <p class="t_ar">Arjit</p>
         </div>
-        <div class="artist">
-            <div class="circle_a">
-                
-            </div>
-            <p>Arjit</p>
-        </div>
-        <div class="artist">
-            <div class="circle_a">
-                
-            </div>
-            <p>Arjit</p>
-        </div>
+
     </div>
 
 </div>
@@ -134,7 +162,7 @@
         </div>
         <div class="audio_control">
             <p id="volume_show">90</p>
-            <i class="fa fa-volume-up fa-2x" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+           <a href=""><i class="fa fa-volume-up fa-2x" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i></a> 
             <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume"> 
         </div>
     </div>
