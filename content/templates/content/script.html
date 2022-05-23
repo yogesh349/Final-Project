@@ -226,5 +226,25 @@ $(".tdS").click(function(e){
   }
 })
 
+$(".rm_u").click(function(e){
+  e.preventDefault()
+  l_id=parseInt($(this).attr("data-lid"))
+  console.log(l_id);
+  mydata={listen_l:l_id}
+  $.ajax({
+    url:"{% url 'LL'  %}",
+    data:mydata,
+    method:"GET",
+    success:function(data){
+      if(data.statu==0){
+        alert("Song Added To Listen Later");
+      }else{
+        alert(" You need To Login To add To Listen Later")
+      }
+    
+     }
+  });
+})
+
 
 </script>

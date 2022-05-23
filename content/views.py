@@ -10,7 +10,7 @@ from .forms import SignUpForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .models import Song
+from .models import Song,Listen_Later
 from .recommend import recommend_songs
 from .recommend import data
 import json
@@ -89,3 +89,15 @@ def play_previous(request):
     playlist=Song.objects.filter(tags="Love Hits").values()
     filter_playlist=list(playlist) 
     return JsonResponse({'status':'previous','filter_playlist':filter_playlist})
+
+
+def listen_later(request):
+    if request.user.is_authenticated:
+        if request.method=='GET':
+            status=0
+            userL=request.user
+            l_id=request.GET['listen_l']
+            listenLater=Listen_Later(user=userL,video_id=l_id)
+            listenLater.save()
+    status=1
+    return JsonResponse({'status':'status'})
