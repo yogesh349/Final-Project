@@ -14,10 +14,8 @@ var three_tar=document.getElementsByClassName('tdS');
 
 
 if (window.location.href.indexOf("song_c_o") > -1 ||window.location.href.indexOf("playsong")>-1) {
-var song=document.getElementById("file_S").value;
-  console.log(song);
+  var song=document.getElementById("file_S").value;
   audio.src="/media/"+song;
-  console.log(audio.src);
   audio.play();
   playingSong = true;
   $(".play").html("<i class='fa fa fa-pause fa-2x'></i>");
@@ -147,7 +145,6 @@ $(".next").click(function(){
  let index=0;
  let id;
  id=parseInt($(this).attr('data-sid'));
- console.log("Song Id " +id);
  mydata={s_id:id};
  
  $.ajax({
@@ -183,16 +180,20 @@ $(".previous").click(function(){
   let id;
   let index=0;
   id=parseInt($(this).attr('data-sid'));
+  console.log(id)
+  mydata={s_id:id};
 
   $.ajax({
     url:"{% url 'previous'  %}",
      method:"GET",
+     data:mydata,
      context: this,
      success:function(data){
       index = data.filter_playlist.findIndex(x => x.song_id ===parseInt(id));
       console.log(index)
       if(index>0){
         index--;
+        console.log(index);
       let y = data.filter_playlist[index].song_id;
       $(this).attr("data-sid",y);
       let next_song=data.filter_playlist[index].song;
@@ -236,8 +237,15 @@ $(".rm_u").click(function(e){
     data:mydata,
     method:"GET",
     success:function(data){
-      if(data.statu==0){
-        alert("Song Added To Listen Later");
+      if(data.status==1){
+        alert("Your song has been added to Listen Later")
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Song has been added to Listen Later',
+        showConfirmButton: false,
+        timer: 1500
+        })
       }else{
         alert(" You need To Login To add To Listen Later")
       }
@@ -245,6 +253,8 @@ $(".rm_u").click(function(e){
      }
   });
 })
+
+
 
 
 </script>

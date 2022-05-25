@@ -32,25 +32,7 @@ genre_data = pd.read_csv('D:\Music Recommendation\data_by_genres.csv')
 year_data = pd.read_csv('D:\Music Recommendation\data_by_year.csv')
 
 
-# In[5]:
 
-
-print(data.info())
-
-
-# In[6]:
-
-
-print(genre_data.info())
-
-
-# In[7]:
-
-
-print(year_data.info())
-
-
-# In[8]:
 
 
 from yellowbrick.target import FeatureCorrelation

@@ -10,6 +10,8 @@ class Song(models.Model):
     tags= models.CharField(max_length=100)
     image=models.ImageField(upload_to="images")
     song=models.FileField(upload_to="music")
+    duration=models.CharField(max_length=100, default='2')
+    year = models.CharField(max_length=300, default='')
 
     def __str__(self):
         return self.name

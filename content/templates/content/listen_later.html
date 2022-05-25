@@ -1,1 +1,81 @@
 {% extends 'content/layout.html' %}
+
+{% block song_d %}
+<div class="b_song_d ">
+    <div class="song_i">
+     <img  src="/media/images/LH.jpg"  width="200px" height="200px"></a> 
+    </div>
+
+    <div class="song_d_n">
+        <p>Listen Later</p>
+        <h4>Listen Later  Hits</h4>
+    </div>
+</div>
+
+<div class="table_s container" >
+    <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="padding: 18px;">Track</th>
+            <th style="padding: 18px;" scope="col">Artists</th>
+            <th style="padding: 18px;" scope="col">Genre</th>
+            <th style="padding: 18px;" scope="col">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+               <tr>
+                <td>{{ forloop.counter }}</td>
+                 <td><a class="song_d" style="text-decoration: none; color: black;" href="{% url 'song_c_o' song.song_id %}"><img style="margin-left: 10px;" src="/media/{{song.image}}" width="60px" alt=""><span style="padding-left: 10px;">{{song.name}}</span></a></td>
+               <td style="padding: 23px;"><a style="text-decoration: none; color: black;" href="">{{song.user.singer}} </a></td> 
+                 <td style="padding: 23px;">{{song.tags}} </td>
+                 <td id="Dutime" style="padding: 23px;">{{song.info.length}}</td>
+               </tr> 
+
+            
+            {% endfor %}
+         
+        </tbody>
+      </table>
+</div>
+{% endblock song_d %}
+{% block footer %}
+
+    <div class="play_song">
+        
+        <div class="im_nm_sec">
+            <div class="im">
+                <img src="/media/{{songC.image}}" alt="" height="50px" id="ply_img" class="img_s">
+            </div>
+            <div class="div_nm_sng">
+               <span class="s_name">{{songC.name}}</span> 
+            </div>
+        </div>
+    
+        <div class="fav_i"> 
+            <i class="fa fa-solid fa-heart fa-lg"></i>
+        </div>
+        <div id="slider">
+            <div id="slidersong">
+               
+            </div>
+        </div>
+        <div id="song_time">
+            <span id="Ctime">
+            </span>/
+            <span id="Dtime"></span>
+        </div>
+        <input type="hidden" name="song_file" id="file_S" value="{{songC.song}}">
+        <div class="btn_play_next">
+            <button style="margin: 6px;" data-sid="{{songC.song_id}}" class="previous"><i class="fa fa-step-backward fa-2x" aria-hidden="true"></i></button>
+            <button style="margin: 6px;" class="play"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button>
+            <button data-sid="{{songC.song_id}}" style="margin: 6px;" class="next"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></button>
+        </div>
+        <div class="audio_control">
+            <p id="volume_show">90</p>
+            <i class="fa fa-volume-up fa-2x" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+            <input type="range" min="0" max="100" value="90" onchange="volume_change()" class="volume"> 
+        </div>
+    </div>
+{% endblock footer %}

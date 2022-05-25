@@ -29,10 +29,11 @@ urlpatterns = [
     path('login/',views.user_login,name='login'),
     path('logout/',views.user_logout,name='logout'),
     path('playsong/<int:id>/',views.play_Song,name='play'),
-    path('playlist/',views.playlist,name='playlist'),
-    path('song_c_o/<int:id>',views.song_c_o,name='song_c_o'),
+    path('playlist/<playlist_u>/',views.playlist,name='playlist'),
+    path('song_c_o/<int:id>/',views.song_c_o,name='song_c_o'),
     path('playnext',views.play_next,name='next'),
     path('previous',views.play_previous,name='previous'),
     path('Listen_L',views.listen_later,name='LL'),
+    path('show_listen_later',views.show_ListenL,name='show_later'),
 
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

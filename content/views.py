@@ -14,13 +14,13 @@ from .models import Song,Listen_Later
 from .recommend import recommend_songs
 from .recommend import data
 import json
-from joblib import load
+
+from functools import reduce
+from django.db.models import Q
 
 # Create your views here.
-
-model=load('./notebooks/models.joblib')
 def index(request):
-    song=Song.objects.all()[:5]
+    song=Song.objects.filter(tags="international").values()[0:5]
     return render(request,'content/index.html',{'songs':song})
 
 def sign_up(request):
@@ -63,30 +63,53 @@ def user_logout(request):
 
 def play_Song(request,id):
     song=Song.objects.filter(song_id=id).first()
-    recommendSongs =recommend_songs([{'name': 'Come As You Are', 'year':1991}],data)
+    song_rec=Song.objects.filter(song_id=id).values()
+    filter_song_rec=list(song_rec)
+    name=filter_song_rec[0]['name']
+    year=int(filter_song_rec[0]['year'])
+    recommendSongs =recommend_songs([{'name': name, 'year':year}],data)
     return render(request,'content/playsong.html',{'song':song,'recommend_songs':recommendSongs})
 
 
-def playlist(request):
-    playlist=Song.objects.filter(tags="Love Hits")
-    return render(request,'content/song_d.html',{'playlist':playlist})
+
+def playlist(request,playlist_u):
+    if(playlist_u)=="Love Hits":
+        image="LH.jpg"
+    elif(playlist_u=="nepali"):
+        image="nepali.jpeg"
+
+
+    playlist=Song.objects.filter(tags=playlist_u)
+    return render(request,'content/song_d.html',{'playlist':playlist,"image":image})
 
 
 
 def song_c_o(request,id):
     playlist=Song.objects.filter(tags="Love Hits")
-    song_c=Song.objects.filter(song_id=id).first
+    song_c=Song.objects.filter(song_id=id).first()
+    song_c2=Song.objects.filter(song_id=id).values()
+    song_list_filter=list(song_c2)
+    song_tags=song_list_filter[0]['tags']
+    playlist=Song.objects.filter(tags=song_tags).values()
+    return render(request,'content/songd_p.html',{'playlist':playlist,'songC':song_c})
     return render(request,'content/songd_p.html',{'playlist':playlist,'songC':song_c})
 
 def play_next(request):
     id=request.GET['s_id']
-    playlist=Song.objects.filter(tags="Love Hits").values()
+    song_next=Song.objects.filter(song_id=id).values()
+    song_list_filter=list(song_next)
+    song_tags=song_list_filter[0]['tags']
+    playlist=Song.objects.filter(tags= song_tags).values()
     filter_playlist=list(playlist)    
     return JsonResponse({'status':'save','filter_playlist':filter_playlist, 'song_id':id})
 
 
 def play_previous(request):
-    playlist=Song.objects.filter(tags="Love Hits").values()
+    id=request.GET['s_id']
+    song_next=Song.objects.filter(song_id=id).values()
+    song_list_filter=list(song_next)
+    song_tags=song_list_filter[0]['tags']
+    playlist=Song.objects.filter(tags=song_tags).values()
     filter_playlist=list(playlist) 
     return JsonResponse({'status':'previous','filter_playlist':filter_playlist})
 
@@ -97,7 +120,25 @@ def listen_later(request):
             status=0
             userL=request.user
             l_id=request.GET['listen_l']
-            listenLater=Listen_Later(user=userL,video_id=l_id)
-            listenLater.save()
-    status=1
-    return JsonResponse({'status':'status'})
+            later=Listen_Later.objects.filter(user=userL)
+            for i in later:
+                if l_id==i.video_id:
+                    break
+            else:
+                listenLater=Listen_Later(user=userL,video_id=l_id)
+                listenLater.save()
+                status=1
+    return JsonResponse({'status':status})
+
+
+
+def show_ListenL(request):
+    listen_p=Listen_Later.objects.filter(user=request.user)
+    ids=[]
+    for i in listen_p:
+        ids.append(i.video_id)
+    
+    results = list(map(int, ids))
+    song=Song.objects.filter(song_id_in=query)
+
+    return render(request,'content/listen_later.html',{'songs':song})
