@@ -101,36 +101,34 @@ Home
     <div class="trend">
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-         <a href=" {% url 'playlist' %} "><img class="card-img-top" src="media/images/LH.jpg" alt="Card image cap" width="200px" height="150px"></a> 
+         <a href=" {% url 'playlist' 'Love Hits' %} "><img class="card-img-top" src="media/images/LH.jpg" alt="Card image cap" width="200px" height="150px" data-value="Love hits"></a> 
           <div class="card-body">
-            <p class="card-text songs_title">Love Hits</p>
+            <p class="card-text p_title">Love Hits</p>
           </div>
         </div>
       </div>
 
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src="media/images/hp.webp" alt="Card image cap" width="200px" height="150px">
+         <a href=" {% url 'playlist' 'international' %} "><img class="card-img-top" src="media/images/international.webp " alt="Card image cap" width="200px" height="150px"></a> 
           <div class="card-body">
-            <p class="card-text songs_title">House Party</p>
+            <p class="card-text p_title">International Songs</p>
           </div>
         </div>
       </div>
-
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src="media/images/reel.webp" alt="Card image cap" width="200px" height="150px">
+         <a href=" {% url 'playlist' 'nepali' %} "><img class="card-img-top" data-value="nepali" src="media/images/reel.webp" alt="Card image cap" width="200px" height="150px"></a> 
           <div class="card-body">
-            <p class="card-text songs_title">Reelin' It In</p>
+            <p class="card-text p_title">Nepali Songs</p>
           </div>
         </div>
       </div>
-
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src="media/images/90s.webp" alt="Card image cap" width="200px" height="150px">
+         <a href=" {% url 'playlist' % 4} "><img class="card-img-top" src="media/images/hp.webp" alt="Card image cap" width="200px" height="150px"></a> 
           <div class="card-body">
-            <p class="card-text songs_title">90s - Unplugged</p>
+            <p class="card-text p_title">Love Hits</p>
           </div>
         </div>
       </div>
@@ -139,12 +137,12 @@ Home
         <div class="card" style="width: 12rem;">
           <img class="card-img-top" src="media/images/hiphop.webp" alt="Card image cap" width="200px" height="150px">
           <div class="card-body">
-            <p class="card-text songs_title">Hip Hop - Top 30</p>
+            <p class="card-text p_title">Hip Hop - Top 30</p>
           </div>
         </div>
       </div>   
     </div> 
-    <div><a class="all" href=""> See all</a> </div>     
+    
   </div>
     
 {% endblock toplaylist %}
@@ -156,7 +154,7 @@ Home
   <div class="trend">
     <div class="trend_songs">
       <div class="card" style="width: 12rem;">
-       <a href=" {% url 'playlist' %} "><img class="card-img-top" src="media/images/international.webp" alt="Card image cap" width="200px" height="150px"></a> 
+       <a href=" {% url 'playlist' 1%} "><img class="card-img-top" src="media/images/international.webp" alt="Card image cap" width="200px" height="150px"></a> 
         <div class="card-body">
           <p class="card-text songs_title">Top International</p>
         </div>
