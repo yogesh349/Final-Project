@@ -77,21 +77,25 @@ def playlist(request,playlist_u):
         image="LH.jpg"
     elif(playlist_u=="nepali"):
         image="nepali.jpeg"
-
-
+    elif(playlist_u=="international"):
+        image="international.webp"
     playlist=Song.objects.filter(tags=playlist_u)
     return render(request,'content/song_d.html',{'playlist':playlist,"image":image})
 
 
 
 def song_c_o(request,id):
-    playlist=Song.objects.filter(tags="Love Hits")
     song_c=Song.objects.filter(song_id=id).first()
     song_c2=Song.objects.filter(song_id=id).values()
     song_list_filter=list(song_c2)
     song_tags=song_list_filter[0]['tags']
     playlist=Song.objects.filter(tags=song_tags).values()
-    return render(request,'content/songd_p.html',{'playlist':playlist,'songC':song_c})
+    if song_tags=="Love Hits":
+        image="LH.jpg"
+    elif(song_tags=="nepali"):
+        image="nepali.jpeg"
+    elif(song_tags=="international"):
+        image="international.webp"
     return render(request,'content/songd_p.html',{'playlist':playlist,'songC':song_c})
 
 def play_next(request):

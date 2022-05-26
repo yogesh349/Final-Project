@@ -158,6 +158,7 @@ $(".next").click(function(){
       index++;
       let y = data.filter_playlist[index].song_id;
       $(this).attr("data-sid",y);
+      $(".previous").attr("data-sid",y);
       let next_song=data.filter_playlist[index].song;
       audio.src="/media/"+next_song;
       $(".s_name").text(data.filter_playlist[index].name);
@@ -180,7 +181,6 @@ $(".previous").click(function(){
   let id;
   let index=0;
   id=parseInt($(this).attr('data-sid'));
-  console.log(id)
   mydata={s_id:id};
 
   $.ajax({
@@ -190,7 +190,6 @@ $(".previous").click(function(){
      context: this,
      success:function(data){
       index = data.filter_playlist.findIndex(x => x.song_id ===parseInt(id));
-      console.log(index)
       if(index>0){
         index--;
         console.log(index);
