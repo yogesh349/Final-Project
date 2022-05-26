@@ -195,6 +195,7 @@ $(".previous").click(function(){
         console.log(index);
       let y = data.filter_playlist[index].song_id;
       $(this).attr("data-sid",y);
+      $(".next").attr("data-sid",y);
       let next_song=data.filter_playlist[index].song;
       audio.src="/media/"+next_song;
       $(".s_name").text(data.filter_playlist[index].name);
