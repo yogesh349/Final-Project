@@ -13,7 +13,7 @@ var three_tar=document.getElementsByClassName('tdS');
 
 
 
-if (window.location.href.indexOf("song_c_o") > -1 ||window.location.href.indexOf("playsong")>-1) {
+if (window.location.href.indexOf("song_c_o") > -1 ||window.location.href.indexOf("playsong")>-1||window.location.href.indexOf("playsearch")>-1) {
   var song=document.getElementById("file_S").value;
   audio.src="/media/"+song;
   audio.play();
@@ -159,6 +159,7 @@ $(".next").click(function(){
       let y = data.filter_playlist[index].song_id;
       $(this).attr("data-sid",y);
       $(".previous").attr("data-sid",y);
+      $(".play").html("<i class='fa fa fa-pause fa-2x'></i>");
       let next_song=data.filter_playlist[index].song;
       audio.src="/media/"+next_song;
       $(".s_name").text(data.filter_playlist[index].name);
@@ -196,6 +197,7 @@ $(".previous").click(function(){
       let y = data.filter_playlist[index].song_id;
       $(this).attr("data-sid",y);
       $(".next").attr("data-sid",y);
+      $(".play").html("<i class='fa fa fa-pause fa-2x'></i>");
       let next_song=data.filter_playlist[index].song;
       audio.src="/media/"+next_song;
       $(".s_name").text(data.filter_playlist[index].name);

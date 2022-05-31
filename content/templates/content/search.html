@@ -1,0 +1,34 @@
+{% extends 'content/layout.html' %}
+{% load static %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+
+
+
+{% block newrelease %}
+<div class="container mt-5">
+    <h3 class="text_trend text-left">New Releases</h3>
+    <div class="trend">
+      {% for song in searched_item %}
+      <div class="trend_songs">
+        <div id="target_btn_play" class="card" style="width: 12rem;">
+         <a  href="{% url 'playsearch' song.song_id %}"><img class="card-img-top song_img" src="/media/{{song.image}}" alt="Card image cap"width="200px" height="150px"></a> 
+         {% comment %} <div class="play_ib" style="z-index:1;" ><a href=""><i class="fa fa-solid fa-play fa-2x greycolor"></i></a> </div> {% endcomment %}
+          <div class="card-body">
+            <!-- <input type="hidden" name="song_file" id="file_S" value="{{song.song}}"> -->
+            <p class="card-text songs_title">{{song.name}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>    
+  </div>
+
+{% endblock newrelease %}
+
+
+
+

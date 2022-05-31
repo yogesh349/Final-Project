@@ -7,14 +7,28 @@ Home
 
 {% block message %}
 {% if messages %}
-{% for message in messages %}
-<div class="alert alert-primary alert-dismissible fade show" role="alert">
-  <strong>Welcome {{ user.username }}</strong> {{message}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-{% endfor %}
+{%for message in messages %}
+     {%if "login" in message.tags %}
+     <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <strong>Welcome {{ user.username }}</strong> {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+     {%endif%}
+{%endfor%}
+
+{# signup form #}
+{%for message in messages %}
+     {%if "signup" in message.tags %}
+     <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+     {%endif%}
+{%endfor%}
 {% endif %}
 {% endblock message %}
 
@@ -118,7 +132,7 @@ Home
       </div>
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-         <a href=" {% url 'playlist' 'nepali' %} "><img class="card-img-top" data-value="nepali" src="media/images/reel.webp" alt="Card image cap" width="200px" height="150px"></a> 
+         <a href=" {% url 'playlist' 'nepali' %} "><img class="card-img-top" data-value="nepali" src="media/images/nepali.jfif" alt="Card image cap" width="200px" height="150px"></a> 
           <div class="card-body">
             <p class="card-text p_title">Nepali Songs</p>
           </div>
@@ -126,9 +140,9 @@ Home
       </div>
       <div class="trend_songs">
         <div class="card" style="width: 12rem;">
-         <a href=" {% url 'playlist' % 4} "><img class="card-img-top" src="media/images/hp.webp" alt="Card image cap" width="200px" height="150px"></a> 
+         <a href=" {% url 'playlist' 'party' %} "><img class="card-img-top" src="media/images/hp.webp" alt="Card image cap" width="200px" height="150px"></a> 
           <div class="card-body">
-            <p class="card-text p_title">Love Hits</p>
+            <p class="card-text p_title">House Party</p>
           </div>
         </div>
       </div>

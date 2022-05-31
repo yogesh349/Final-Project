@@ -3,7 +3,7 @@ import imp
 from pprint import pformat
 from typing import List
 from urllib import response
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from numpy import rec
 from .forms import SignUpForm,LoginForm
@@ -14,6 +14,7 @@ from .models import Song,Listen_Later
 from .recommend import recommend_songs
 from .recommend import data
 import json
+from django.db.models import Case, When
 
 from functools import reduce
 from django.db.models import Q
@@ -31,7 +32,7 @@ def sign_up(request):
             fm=SignUpForm(request.POST)
             if fm.is_valid():
                 fm.save()
-                messages.success(request,'You Have Successfully Logged')
+                messages.success(request,'You Have Created Your Account Now You can Login',extra_tags='signup')
                 return HttpResponseRedirect('/')
         else:
             fm=SignUpForm()
@@ -50,7 +51,7 @@ def user_login(request):
                     if user is not None:
                         print("Not yet login")
                         login(request,user)
-                        messages.success(request,'You Have Successfully Logged')
+                        messages.success(request,'You Have Successfully Logged',extra_tags='login')
                         return HttpResponseRedirect('/')
             else:
                 fm=LoginForm()
@@ -76,9 +77,13 @@ def playlist(request,playlist_u):
     if(playlist_u)=="Love Hits":
         image="LH.jpg"
     elif(playlist_u=="nepali"):
-        image="nepali.jpeg"
+        image="nepali.jfif"
     elif(playlist_u=="international"):
         image="international.webp"
+    elif(playlist_u=="party"):
+        image=" hp.webp"
+
+       
     playlist=Song.objects.filter(tags=playlist_u)
     return render(request,'content/song_d.html',{'playlist':playlist,"image":image})
 
@@ -143,6 +148,33 @@ def show_ListenL(request):
         ids.append(i.video_id)
     
     results = list(map(int, ids))
-    song=Song.objects.filter(song_id_in=query)
+
+    # Turn list of values into list of Q objects
+    queries = [Q(pk=value) for value in results]
+
+    # Take one Q object from the list
+    query = queries.pop()
+
+# Or the Q object with the ones remaining in the list
+    for item in queries:
+        query |= item
+
+
+    song=Song.objects.filter(query)
 
     return render(request,'content/listen_later.html',{'songs':song})
+
+
+def search(request):
+    query=request.GET['search']
+    search =Song.objects.filter(name__icontains=query)
+    return render(request,'content/search.html',{'searched_item':search})
+
+def play_search(request,id):
+    print(id)
+    song=Song.objects.filter(song_id=id).first()
+    print(song)
+    return render(request,'content/playsearch.html',{'song':song})
+
+def history(request):
+    pass

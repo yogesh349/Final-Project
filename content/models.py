@@ -22,3 +22,10 @@ class Listen_Later(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     video_id=models.CharField(max_length=100000,default="")
 
+class History(models.Model):
+    history_id=models.AutoField(primary_key=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    music_id=models.CharField(max_length=100000,default="")
+
+
+

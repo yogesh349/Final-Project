@@ -35,5 +35,9 @@ urlpatterns = [
     path('previous',views.play_previous,name='previous'),
     path('Listen_L',views.listen_later,name='LL'),
     path('show_listen_later',views.show_ListenL,name='show_later'),
+    path('search',views.search,name='search'),
+    path('playsearch/<id>',views.play_search,name='playsearch'),
+    path('history/',views.history,name='history'),
+
 
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
