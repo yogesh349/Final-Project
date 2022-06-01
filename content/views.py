@@ -10,7 +10,7 @@ from .forms import SignUpForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .models import Song,Listen_Later
+from .models import Song,Listen_Later,History
 from .recommend import recommend_songs
 from .recommend import data
 import json
@@ -19,10 +19,27 @@ from django.db.models import Case, When
 from functools import reduce
 from django.db.models import Q
 
+
 # Create your views here.
 def index(request):
     song=Song.objects.filter(tags="international").values()[0:5]
-    return render(request,'content/index.html',{'songs':song})
+    his=History.objects.filter().order_by('-music_id')[:5:-1]
+
+    ids=[]
+    for i in his:
+        ids.append(i.music_id)
+    results=list(map(int, ids))
+
+    queries = [Q(pk=value) for value in results]
+    # Take one Q object from the list
+    query = queries.pop()
+    # Or the Q object with the ones remaining in the list
+    for item in queries:
+        query |= item
+    print(query)
+    song2=Song.objects.filter(query)
+    print(song2)
+    return render(request,'content/index.html',{'songs':song,'history':song2})
 
 def sign_up(request):
     if request.user.is_authenticated:
@@ -92,6 +109,16 @@ def playlist(request,playlist_u):
 def song_c_o(request,id):
     song_c=Song.objects.filter(song_id=id).first()
     song_c2=Song.objects.filter(song_id=id).values()
+    history=History.objects.filter()
+    for i in history:
+        print(type(i.music_id))
+        if id==int(i.music_id):
+            print('Yep in here')
+            break
+    else:
+        his=History(music_id=id)
+        his.save()
+
     song_list_filter=list(song_c2)
     song_tags=song_list_filter[0]['tags']
     playlist=Song.objects.filter(tags=song_tags).values()
@@ -129,6 +156,7 @@ def listen_later(request):
             status=0
             userL=request.user
             l_id=request.GET['listen_l']
+            print(l_id)
             later=Listen_Later.objects.filter(user=userL)
             for i in later:
                 if l_id==i.video_id:
@@ -146,7 +174,6 @@ def show_ListenL(request):
     ids=[]
     for i in listen_p:
         ids.append(i.video_id)
-    
     results = list(map(int, ids))
 
     # Turn list of values into list of Q objects
@@ -158,10 +185,7 @@ def show_ListenL(request):
 # Or the Q object with the ones remaining in the list
     for item in queries:
         query |= item
-
-
     song=Song.objects.filter(query)
-
     return render(request,'content/listen_later.html',{'songs':song})
 
 
@@ -177,4 +201,18 @@ def play_search(request,id):
     return render(request,'content/playsearch.html',{'song':song})
 
 def history(request):
-    pass
+    his=History.objects.filter()
+    ids=[]
+    for i in his:
+        ids.append(i.music_id)
+    results=list(map(int, ids))
+    queries = [Q(pk=value) for value in results]
+
+    # Take one Q object from the list
+    query = queries.pop()
+
+# Or the Q object with the ones remaining in the list
+    for item in queries:
+        query |= item
+    song=Song.objects.filter(query)
+    return render(request,'content/history.html',{'his':song})

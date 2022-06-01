@@ -55,6 +55,7 @@
 }
 #ham_logo{
     color: black;
+    font-size: 30px;
 }
 
 
@@ -221,6 +222,9 @@
     height: 20px;
     color: black;
 }
+.td_list{
+    padding: 23px;
+}
 
 .three_list{
     display: none;
@@ -231,6 +235,9 @@
     z-index: 1;
     /* display: none; */
     background-color: rgb(211, 207, 207);
+}
+.head_p{
+    padding: 18px;
 }
 .tdl{
     margin: 5px;
@@ -475,4 +482,105 @@ body {
     }
     }
     
+
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .searchBar{
+        margin-left: 0%;
+        width: 173px;
+    }
+    .header_2{
+        display: none;
+   
+     }
+     .a_child {
+        margin: 0.5rem;   
+        font-size: 10px;
+
+     }
+     .login_signup{
+         font-size: 10px;
+     }
+     .qa{
+         font-size: 12px;
+     }
+
+     #searchQueryInput {
+        width: 77%;
+     } 
+     .header_sec {
+        padding: 2px 0px;
+     }
+   
     
+    .text_trend{
+        font-size: 17px;
+        
+    }
+
+    .imglog {
+        width: 15px;
+        height: 17px;
+      }
+
+      .logo_m{
+        width: 57px;
+        height: 27px;
+        margin-top: 10px;
+      }
+
+      #ham_logo {
+        font-size: 21px;
+        margin-top: 13px;
+      }
+      .td_list{
+        padding: 0px;
+     }
+     #Dtime{
+         display: none;
+     }
+     #Ctime{
+         display: none;
+     }
+     .slash{
+         display: none;
+     }
+     .fa-2x {
+        font-size: 1em;
+      }
+      #volume_show{
+          display: none;
+      }
+      .audio_control{
+          display: none;
+      }
+      #song_time{
+          display: none;
+      }
+
+      .duration{
+          display: none;
+      }
+      .song_d_n {
+        margin: 10px;
+      }
+      .fav_i {
+        padding-top: 21px;
+        left: 29%;
+      }
+
+      #slider {
+        margin-right: 48px;
+        width: 200px;
+        
+      }
+    
+
+
+      
+
+}

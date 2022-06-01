@@ -58,10 +58,10 @@
         <thead>
           <tr>
             <th></th>
-            <th style="padding: 18px;">Track</th>
-            <th style="padding: 18px;" scope="col">Artists</th>
-            <th style="padding: 18px;" scope="col">Genre</th>
-            <th style="padding: 18px;" scope="col">Duration</th>
+            <th>Track</th>
+            <th scope="col">Artists</th>
+            <th scope="col">Genre</th>
+            <th class="duration" scope="col">Duration</th>
           </tr>
         </thead>
         <tbody>
@@ -69,8 +69,8 @@
                <tr>
                 <td>{{ forloop.counter }}</td>
                  <td><a class="song_d" style="text-decoration: none; color: black;" href="{% url 'song_c_o' song.song_id %}"><img style="margin-left: 10px;" src="/media/{{song.image}}" width="60px" alt=""><span style="padding-left: 10px;">{{song.name}}</span></a></td>
-               <td style="padding: 23px;"><a style="text-decoration: none; color: black;" href="">{{song.singer}} </a></td> 
-                 <td style="padding: 23px;">{{song.tags}} </td>
+               <td class="td_list"><a style="text-decoration: none; color: black;" href="">{{song.singer}} </a></td> 
+                 <td class="td_list">{{song.tags}} </td>
                  <td id="Dutime" style="padding: 23px;">{{song.info.length}}</td>
                </tr> 
 
@@ -82,6 +82,12 @@
 </div>
 {% endblock song_d %}
 {% block footer %}
+<div class="three_list">
+    <div class="tdl"> <a  class="rm_u" href=""><i class="fa fa-solid fa-download"></i> <span class="share_t">Download</span></a> </div>
+    <div class="tdl"><a  class="rm_u" data-lid="{{songC.song_id}}" href=""><img src="/media/images/LL.png" alt="" width="25px" height="25px">  Listen Later</span> </a> </div>
+    <div class="tdl"><a  class="rm_u"  href=""><i class="fa fas fa-share"></i><span class="share_t">View Artist</span> </a></div>
+    </div> 
+
 
     <div class="play_song">
         
@@ -107,7 +113,7 @@
         </div>
         <div id="song_time">
             <span id="Ctime">
-            </span>/
+            </span> <span class="slash">/</span> 
             <span id="Dtime"></span>
         </div>
         <input type="hidden" name="song_file" id="file_S" value="{{songC.song}}">

@@ -17,20 +17,20 @@
         <thead>
           <tr>
             <th></th>
-            <th style="padding: 18px;">Track</th>
-            <th style="padding: 18px;" scope="col">Artists</th>
-            <th style="padding: 18px;" scope="col">Genre</th>
-            <th style="padding: 18px;" scope="col">Duration</th>
+            <th class="head_p" >Track</th>
+            <th class="head_p"  scope="col">Artists</th>
+            <th class="head_p"  scope="col">Genre</th>
+            <th class="head_p"  scope="col">Duration</th>
           </tr>
         </thead>
         <tbody>
             {% for song in playlist %}
                <tr>
                 <td>{{ forloop.counter }}</td>
-                 <td><a class="song_d" style="text-decoration: none; color: black;" href="{% url 'song_c_o' song.song_id %}"><img style="margin-left: 10px;" src="/media/{{song.image}}" width="60px" alt=""><span style="padding-left: 10px;">{{song.name}}</span></a></td>
-               <td style="padding: 23px;"><a style="text-decoration: none; color: black;" href="">{{song.singer}} </a></td> 
-                 <td style="padding: 23px;">{{song.tags}} </td>
-                 <td style="padding: 23px;">klfsfjs</td>
+                 <td><a class="song_d" style="text-decoration: none; color: black;" href="{% url 'song_c_o' song.song_id %}"><img style="margin-left: 10px;" src="/media/{{song.image}}" width="60px" alt=""><span class="td_list">{{song.name}}</span></a></td>
+               <td class="td_list"><a style="text-decoration: none; color: black;" href="">{{song.singer}} </a></td> 
+                 <td class="td_list" >{{song.tags}} </td>
+                 <td class="td_list" >klfsfjs</td>
                </tr> 
 
             

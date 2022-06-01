@@ -241,15 +241,8 @@ $(".rm_u").click(function(e){
     success:function(data){
       if(data.status==1){
         alert("Your song has been added to Listen Later")
-        Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Song has been added to Listen Later',
-        showConfirmButton: false,
-        timer: 1500
-        })
       }else{
-        alert(" You need To Login To add To Listen Later")
+        alert(" You song has already been added")
       }
     
      }

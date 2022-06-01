@@ -94,7 +94,7 @@
 {% endblock more_f_artist %}
 
 {% block artist %}
-<div class="container mt-5">
+{% comment %} <div class="container mt-5">
   <h3 class="text_trend text-left">Song Artist</h3>
     <div class="artist_l">
         <div class="artist">
@@ -120,12 +120,17 @@
 
     </div>
 
-</div>
+</div> {% endcomment %}
    
 {% endblock artist %}
 
 
 {% block footer %}
+<div class="three_list">
+  <div class="tdl"> <a  class="rm_u" href=""><i class="fa fa-solid fa-download"></i> <span class="share_t">Download</span></a> </div>
+  <div class="tdl"><a  class="rm_u" data-lid="{{song.song_id}}" href=""><img src="/media/images/LL.png" alt="" width="25px" height="25px">  Listen Later</span> </a> </div>
+  <div class="tdl"><a  class="rm_u"  href=""><i class="fa fas fa-share"></i><span class="share_t">View Artist</span> </a></div>
+  </div> 
     <div class="play_song">
         
         <div class="im_nm_sec">
@@ -157,6 +162,9 @@
         <input type="hidden" name="song_file" id="file_S" value="{{song.song}}">
         <div class="btn_play_next">
             <button style="margin: 6px;" data-sid="{{song.song_id}}" class="previous"><i class="fa fa-step-backward fa-2x" aria-hidden="true"></i></button>
+
+           <button style="margin: 6px;" data-his={{song.song_id}} class="play"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button>
+        
             <button style="margin: 6px;" class="play"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button>
             <button data-sid="{{song.song_id}}" style="margin: 6px;" class="next"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></button>
         </div>

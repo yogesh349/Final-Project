@@ -57,54 +57,21 @@ Home
 
 {% block trending %}
 <div class="container mt-5">
-    <h3 class="text_trend text-left">Trending Songs</h3>
+    <h3 class="text_trend text-left">Recently Played</h3>
     <div class="trend">
+      {% for song in history %}
       <div class="trend_songs">
-        <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/atrangi.jpg' %}" alt="Card image cap" width="200px" height="150px">
+        <div id="target_btn_play" class="card" style="width: 12rem;">
+         <a  href="{% url 'song_c_o' song.song_id %}"><img class="card-img-top song_img" src="/media/{{song.image}}" alt="Card image cap"width="200px" height="150px"></a> 
+         {% comment %} <div class="play_ib" style="z-index:1;" ><a href=""><i class="fa fa-solid fa-play fa-2x greycolor"></i></a> </div> {% endcomment %}
           <div class="card-body">
-            <p class="card-text songs_title">Rait Zara Si </p>
+            <!-- <input type="hidden" name="song_file" id="file_S" value="{{song.song}}"> -->
+            <p class="card-text songs_title">{{song.name}}</p>
           </div>
         </div>
       </div>
-
-      <div class="trend_songs">
-        <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/atrangi.jpg' %}" alt="Card image cap" width="200px" height="150px"> 
-          <div class="card-body">
-            <p class="card-text songs_title">Rait Zara Si </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="trend_songs">
-        <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/atrangi.jpg' %}" alt="Card image cap" width="200px" height="150px">
-          <div class="card-body">
-            <p class="card-text songs_title">Rait Zara Si </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="trend_songs">
-        <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/atrangi.jpg' %}" alt="Card image cap" width="200px" height="150px">
-          <div class="card-body">
-            <p class="card-text songs_title">Rait Zara Si </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="trend_songs">
-        <div class="card" style="width: 12rem;">
-          <img class="card-img-top" src=" {% static 'content/images/atrangi.jpg' %}" alt="Card image cap" width="200px" height="150px">
-          <div class="card-body">
-            <p class="card-text songs_title">Rait Zara Si </p>
-          </div>
-        </div>
-      </div>   
-    </div> 
-    <div><a  class="all" href=""> See all</a></div>    
+      {% endfor %}
+    </div>    
   </div>
 
 {% endblock trending %}
