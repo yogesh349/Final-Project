@@ -38,6 +38,7 @@ urlpatterns = [
     path('search',views.search,name='search'),
     path('playsearch/<id>',views.play_search,name='playsearch'),
     path('history/',views.history,name='history'),
+    path('favourite',views.favourite,name='favourite'),
 
 
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

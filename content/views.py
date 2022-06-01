@@ -10,7 +10,7 @@ from .forms import SignUpForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .models import Song,Listen_Later,History
+from .models import Song,Listen_Later,History,Favourite
 from .recommend import recommend_songs
 from .recommend import data
 import json
@@ -36,9 +36,7 @@ def index(request):
     # Or the Q object with the ones remaining in the list
     for item in queries:
         query |= item
-    print(query)
     song2=Song.objects.filter(query)
-    print(song2)
     return render(request,'content/index.html',{'songs':song,'history':song2})
 
 def sign_up(request):
@@ -111,9 +109,7 @@ def song_c_o(request,id):
     song_c2=Song.objects.filter(song_id=id).values()
     history=History.objects.filter()
     for i in history:
-        print(type(i.music_id))
         if id==int(i.music_id):
-            print('Yep in here')
             break
     else:
         his=History(music_id=id)
@@ -156,7 +152,6 @@ def listen_later(request):
             status=0
             userL=request.user
             l_id=request.GET['listen_l']
-            print(l_id)
             later=Listen_Later.objects.filter(user=userL)
             for i in later:
                 if l_id==i.video_id:
@@ -165,8 +160,31 @@ def listen_later(request):
                 listenLater=Listen_Later(user=userL,video_id=l_id)
                 listenLater.save()
                 status=1
-    return JsonResponse({'status':status})
+        return JsonResponse({'status':status})
+    else:
+        return JsonResponse({'status': "Please Login To add Songs To Listen later"})             
 
+
+def favourite(request):
+    if request.user.is_authenticated:
+        if request.method=='GET':
+            status=0
+            userL=request.user
+            id=request.GET['history_id']
+
+            favourite_coll=Favourite.objects.filter(user=userL)
+            for i in favourite_coll:
+                if id==i.music_id:  
+                    break
+            else:
+                favColl=Favourite(user=userL,music_id=id)
+                favColl.save()
+                status=1
+        return JsonResponse({'status':status})
+    else:
+        return JsonResponse({'status': "Please Login To add Songs To Favourite"})             
+
+    
 
 
 def show_ListenL(request):
@@ -195,9 +213,7 @@ def search(request):
     return render(request,'content/search.html',{'searched_item':search})
 
 def play_search(request,id):
-    print(id)
     song=Song.objects.filter(song_id=id).first()
-    print(song)
     return render(request,'content/playsearch.html',{'song':song})
 
 def history(request):

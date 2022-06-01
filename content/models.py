@@ -27,4 +27,7 @@ class History(models.Model):
     music_id=models.CharField(max_length=100000,default="")
 
 
-
+class Favourite(models.Model):
+    favourite_id=models.AutoField(primary_key=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    music_id=models.CharField(max_length=100000,default="")

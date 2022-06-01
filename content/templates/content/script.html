@@ -241,8 +241,31 @@ $(".rm_u").click(function(e){
     success:function(data){
       if(data.status==1){
         alert("Your song has been added to Listen Later")
-      }else{
+      }else if(data.status == 0){
         alert(" You song has already been added")
+      }else{
+        alert(data.status);
+      }
+    
+     }
+  });
+})
+
+$(".favourite").click(function(e){
+  e.preventDefault();
+  h_id=parseInt($(this).attr("data-fav"))
+  mydata={history_id:h_id}
+  $.ajax({
+    url:"{% url 'favourite'  %}",
+    data:mydata,
+    method:"GET",
+    success:function(data){
+      if(data.status==1){
+        alert("Your song has been added to Favourite")
+      }else if(data.status==0){
+        alert(" You song has already been added to Favourite")
+      }else{
+        alert(data.status);
       }
     
      }

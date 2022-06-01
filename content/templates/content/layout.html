@@ -70,8 +70,12 @@
 
       <h5 class="qa">Quick Access</h5>
       <div class="a_child"><a class="ham_link" class="ham_link" href="{% url 'history' %}">History</a> </div>
+      {% if user.is_authenticated %}
       <div class="a_child"><a class="ham_link" href="">Favourites</a></div>
       <div class="a_child"><a class="ham_link" href=" {% url 'show_later' %}">Listen Later</a></div>
+      
+      {% endif %}
+
       <div class="a_child"><a class="ham_link" href="">Trending Songs</a></div>
       <div class="a_child"><a class="ham_link" href="">Trending Songs</a></div>
     </div>
